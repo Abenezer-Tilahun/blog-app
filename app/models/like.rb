@@ -5,8 +5,8 @@ class Like < ApplicationRecord
   after_save :update_likes_counter
 
   def update_likes_counter
-    post.update(
-      likes_counter: post.likes.count
-    )
+    @posts.each do |post|
+      post.update_column(:likes_counter, post.likes.count) if post.id == post_id
+    end
   end
 end
