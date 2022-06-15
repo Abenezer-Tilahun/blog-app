@@ -12,7 +12,7 @@
 
   <div class="card text-dark bg-light m-2 d-flex flex-row" style="max-width: 600px;">
     <div class="col-md-4  d-flex align-items-center">
-      <h5 class="card-title"> <%= link_to user.name, users_url(user), class: 'display-5 text-primary' %></h5> 
+      <h5 class="card-title"> <%= link_to user.name, user_path(user.id), class: 'display-5 text-primary' %></h5> 
     </div>
 
     <div class = " col-md-7 d-flex align-items-end justify-content-end" >
