@@ -1,0 +1,5 @@
+<ul class="recent-comments flex-one">
+  <% post.most_recent_comments.each do |comment| %>
+  <li><%= comment.author.name %>: <%= comment.text%></li>
+  <% end %>
+</ul>

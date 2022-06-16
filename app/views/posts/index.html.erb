@@ -1,7 +1,15 @@
-<section class="all-posts">
-  <%= render "users/user", user: @user %>
-    <ul class="posts-wrapper" >
-      <% @posts.each do |post| %>
+ <section class="all-posts">
+  <%= link_to "All Users", root_path, class: "all-users-link" %>
+    <div class="user">
+            <%= image_tag("images.png", :alt => "rss feed", class: 'img-fluid rounded-start')   %> 
+      <a class="link-to-user" href="/users/<%= @user.id %>"><%= @user.name %></a>
+     <h4 class="posts-count">Number of Posts: <%= @user.posts.size %></h4>
+        <% if @current_user && @current_user.id == @user.id%>
+     <%= link_to "New post", new_user_post_path(@user.id) %>
+    <% end %>
+    </div>
+   <ul class="posts-wrapper" >
+      <% @user.all_posts.each do |post| %>
         <li>
           <div class="post-container flex-one">
           <div class="single-post">  
@@ -16,13 +24,8 @@
               <span>Likes: <%= post.likes.size %></span>
               </div>
             </div>
-            <ul class="recent-comments flex-one">
-              <% post.most_recent_comments.each do |comment| %>
-              <li><%= comment.author.name %>: <%= comment.text%></li>
+            <%= render "most_recent_comments", post: post %> 
+          </li>
               <% end %>
             </ul>
-         </li>
-      <% end %>
-    </ul>
-   <%= link_to "All Users", root_path, class: "all-users-link" %>
 </section> 

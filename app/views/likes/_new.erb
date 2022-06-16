@@ -1,0 +1,3 @@
+<%= form_with model:[@post, @post.likes.new] do |f|%>
+      <%= f.submit "~Like~" , data: {disable_with: "Loading..."}, class: "likes" %>
+  <%end%>
