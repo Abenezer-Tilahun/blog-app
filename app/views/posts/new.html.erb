@@ -1,0 +1,19 @@
+<section class="post-form">
+  <h3 class="form-title"> Add Your Post</h3>
+  <%= form_with model:[@current_user, @current_user.posts.new], method: :post, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :title, "Title", class: "col-sm-2 control-label" %>
+    <div class="input col-sm-10">
+      <%= f.text_field :title, :placeholder => "title"%>
+    </div>
+    </div>
+  <div class="form-group">
+    <%= f.label :text,"Post here:", class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.text_area :text, size: "80x15", :placeholder => "text", required: true%>
+  </div>
+  </div>
+ <%= f.submit "Submit", class: "btn-post", data: {disable_with: "Loading..."} %>
+  <% end %>
+  <%= link_to "Back", :back , class: "back"%>
+<section>
