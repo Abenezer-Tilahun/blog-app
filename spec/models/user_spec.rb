@@ -1,37 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'validations for User model and all posts' do
+  @user = User.new(name: 'Abeni', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.',
+                   posts_counter: 0)
+
+  before(:each) { user.save }
+
+  it 'validates the presence of the name' do
+    user.name = nil
+    expect(user).to_not be_valid
+  end
+
+  it 'validates the presence of the posts_counter' do
+    user.posts_counter = nil
+    expect(user).to_not be_valid
+  end
+
+  it 'validates the numericality of the posts_counter' do
+    user.posts_counter = 'a'
+    expect(user).to_not be_valid
+  end
+
+  it 'validates the presence of the bio' do
+    user.bio = nil
+    expect(user).to_not be_valid
+  end
+
+  it 'validates the presence of the photo' do
+    user.photo = nil
+    expect(user).to_not be_valid
+  end
+
+  describe '#recent_posts' do
     before(:each) do
-      @user = User.new(name: 'Abeni', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.',
-                       posts_counter: 0)
       5.times do |i|
-        Post.new(title: "Post #{i}", text: "Post #{i} text", comments_counter: 0, likes_counter: 0,
-                 author_id: @user.id)
+        Post.new(title: "Post #{i}", text: "text#{i}", comments_counter: 0, likes_counter: 0, author_id: user.id)
       end
-      @posts = Post.where(author_id: @user.id).all
     end
 
-    before { @user.save }
-
-    it 'if there is name' do
-      @user.name = nil
-      expect(@user).to_not be_valid
-    end
-
-    it 'PostsCounter must be greater than or equal to zero' do
-      @user.posts_counter = -1
-      expect(@user).to_not be_valid
-    end
-
-    it 'PostsCounter must be greater than or equal to zero' do
-      @user.posts_counter = 7
-      expect(@user).to be_valid
-    end
-
-    it 'should return less than 3 posts ' do
-      value = @user.recent_posts.length
-      expect(value).to be < 3
+    it 'returns the last 3 posts' do
+      expect(user.recent_posts).to eq(Post.order(created_at: :desc).limit(3))
     end
   end
 end
