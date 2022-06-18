@@ -7,6 +7,10 @@ class Post < ApplicationRecord
     comments.order(created_at: :desc).limit(5)
   end
 
+  validates :title, length: { in: 1..250 }, presence: true, allow_blank: false
+  validates_numericality_of :comments_counter, only_integer: true, greater_than_or_equal_to: 0
+  validates_numericality_of :likes_counter, only_integer: true, greater_than_or_equal_to: 0
+
   after_save :update_posts_counter
 
   private
