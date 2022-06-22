@@ -13,3 +13,32 @@
  *= require_tree .
  *= require_self
  */
+body {
+  display: grid;
+  margin: auto;
+  width: 90%;
+}
+
+.sign-up,
+.log-in,
+.edit {
+  display: grid;
+  margin: auto;
+}
+
+button {
+  width: 10%;
+}
+
+.links button {
+  display: inline;
+  width: 10%;
+  margin-left: 90%;
+  margin-top: -30px;
+}
+
+form {
+  display: grid;
+  row-gap: 10px;
+  margin: 30px;
+}

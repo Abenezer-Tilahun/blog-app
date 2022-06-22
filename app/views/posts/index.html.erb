@@ -1,5 +1,4 @@
  <section class="all-posts">
-  <%= link_to "All Users", root_path, class: "all-users-link" %>
     <div class="user">
             <%= image_tag("images.png", :alt => "rss feed", class: 'img-fluid rounded-start')   %> 
       <a class="link-to-user" href="/users/<%= @user.id %>"><%= @user.name %></a>
