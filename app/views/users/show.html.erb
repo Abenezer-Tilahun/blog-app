@@ -3,6 +3,7 @@
   <div class="bio-wrapper flex-one">
     <h3 class="bio">Bio</h3>
     <p><%= @user.bio %> </p>
+    <%= link_to "See all posts", user_posts_path(@user.id), class: "link-to-all-posts" %>
   </div>
     <ul class="recent-post">
     <% @user.most_recent_posts.each do |post| %>
