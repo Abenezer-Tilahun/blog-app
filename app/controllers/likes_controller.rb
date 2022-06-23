@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  load_and_authorize_resource
   def new
     @like = Like.new
   end
