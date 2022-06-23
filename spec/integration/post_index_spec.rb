@@ -47,7 +47,7 @@ RSpec.describe 'Testing posts/index page', type: :feature do
 
     scenario 'if user can see comments text' do
       expect(page).to have_content 'Comments:'
-      expect(page).to have_content 'Beki: test comment 3 Esther: test comment 2 Abeni: test comment 1'
+      expect(page).to have_content 'Beki: test comment 3 Rahel: test comment 2 Abeni: test comment 1'
     end
 
     scenario 'if user can see posts count' do
