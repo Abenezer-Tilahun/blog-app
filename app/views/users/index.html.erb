@@ -1,11 +1,16 @@
-<section class="users ">
-  <ul >
-  <% @users.each do |user| %>
-  <li style="list-style-type: none;">
-    <%= link_to user_path(user.id) do %>
-    <%= render "user", user: user %>
+<section class='edit'>
+    <h2>Add role to user</h2>
+     <div class="col-md-6 col-md-offset-3">
+    <%= form_with model: @user do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :role %>
+      <%= f.text_field :role, class: 'form-control' %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
-    <li style="list-style-type: none;">
-  <% end %>
-  </ul>
+    </div>
 </section> 

@@ -1,5 +1,6 @@
 <div class="user">
- <%= image_tag("images.png", :alt => "rss feed", class: 'img-fluid rounded-start')   %>  
-    <h1 class="link-to-user" href="/users/<%= user.id %>"><%= user.name %></h1>
-  <h4 class="posts-count">Number of Posts: <%= user.posts.size %></h4>
+ <%= image_tag("images.png", :alt => "rss feed", class: 'img-fluid rounded-start') %>  
+  <a class="link-to-user" href="/users/<%= user.id %>"><%= user.name %></a>
+  <h4 class="posts-count">Posts(<%= user.posts.size %>)</h4>
+  <%= link_to "admin settings", edit_user_path(user.id) if can? :update, user   %>
 </div>

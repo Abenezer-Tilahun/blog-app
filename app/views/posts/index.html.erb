@@ -1,8 +1,9 @@
- <section class="all-posts">
+<section class="all-posts">
     <div class="user">
-            <%= image_tag("images.png", :alt => "rss feed", class: 'img-fluid rounded-start')   %> 
+      <%= image_tag("images.png", :alt => "rss feed", class: 'img-fluid rounded-start') %>  
+
       <a class="link-to-user" href="/users/<%= @user.id %>"><%= @user.name %></a>
-     <h4 class="posts-count">Number of Posts: <%= @user.posts.size %></h4>
+      <h4 class="posts-count">Posts(<%= @user.posts.size %>)</h4>
         <% if @current_user && @current_user.id == @user.id%>
      <%= link_to "New post", new_user_post_path(@user.id) %>
     <% end %>
@@ -15,16 +16,15 @@
             <%= link_to user_post_path(@user.id, post.id) do %>
             <h3 class="post-tittle"><%= post.title%></h3>
             <% end %>
-                        <p><%= post.text%></p>
+            <p><%= post.text%></p>
           </div>
-
             <div class="counters">
               <span>Comments: <%= post.comments.size %></span>
               <span>Likes: <%= post.likes.size %></span>
               </div>
             </div>
-            <%= render "most_recent_comments", post: post %> 
+             <%= render "most_recent_comments", post: post %> 
           </li>
-              <% end %>
-            </ul>
-</section> 
+      <% end %>
+    </ul>
+  </section>

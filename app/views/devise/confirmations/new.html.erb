@@ -1,16 +1,20 @@
-<h2>Resend confirmation instructions</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-verification-input-wrap">
+         <ul>
+        <li>You will recieve a verification code on your mail after you registered. Enter that code below.</li>
+        <li>If somehow, you did not recieve the verification email then <a href="#">resend the verification email</a></li>
+      </ul>
+       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="main-verification-input fl-wrap">
+           <div class="main-verification-input-item">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Enter your email here"  %>
+            </div>
+             <button type="submit" class="main-verification-button   ">Resend Mail</button>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+           </div>
+           <%= link_to "Back", :back, class: "btn btn-sl btn-dark mt-2 btn-block btnForget"%>
+     <% end %>
+       </div>
+    </div>
