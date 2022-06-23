@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  load_and_authorize_resource
 
   def index
-    @user = User.includes(:posts).find(params[:user_id])
-    @current_user = current_user
+    @user = User.find(params[:user_id])
+    @all_posts = @user.posts.includes(:comments).order(created_at: :desc)
   end
 
   def show
     @user = User.find(params[:user_id])
-    @post = @user.posts.includes(:comments, :likes).find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -39,8 +39,6 @@ class PostsController < ApplicationController
     flash[:alert] = 'You have deleted this post successfully!'
     redirect_to user_posts_path(post.author_id)
   end
-
-  private
 
   def post_params
     params.require(:post).permit(:author_id, :title, :text).tap do |post_params|

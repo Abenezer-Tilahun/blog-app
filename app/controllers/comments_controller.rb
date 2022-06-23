@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @comment = Comment.new
   end
@@ -26,11 +28,7 @@ class CommentsController < ApplicationController
     redirect_to user_posts_path(@post.author_id)
   end
 
-  private
-
   def comment_params
-    params.require(:comment).permit(:text).tap do |comment_params|
-      comment_params.require(:text)
-    end
+    params.require(:comment).permit(:text)
   end
 end

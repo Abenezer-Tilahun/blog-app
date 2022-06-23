@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  load_and_authorize_resource
 
   def index
     @users = User.all
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = 'The user has been updateduccessfully'
+      flash[:notice] = 'The user has been updated successfully'
       redirect_to root_path(@user.id)
       # Handle a successful update.
     else
