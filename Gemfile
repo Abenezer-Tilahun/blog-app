@@ -30,6 +30,9 @@ gem 'jbuilder'
 # add devise
 gem 'devise'
 
+# Add Capybara for integration tests
+gem 'capybara'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
