@@ -48,5 +48,6 @@ RSpec.feature 'Tests for user/show page', type: :feature do
     first(:link, href: user_path(@user.id)).click
     click_link('See all posts')
     expect(current_path).to eq "/users/#{User.first.id}/posts"
+    expect(current_path).to eq(user_posts_path(@user.id))
   end
 end

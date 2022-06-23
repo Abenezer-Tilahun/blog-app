@@ -32,6 +32,7 @@ RSpec.feature 'Tests for the Log in Page', type: :feature do
         fill_in 'Password', with: @user1.password
       end
       click_button 'Log in'
+      expect(current_path).to eq(authenticated_root_path)
       expect(page).to have_content 'Signed in successfully'
     end
   end
