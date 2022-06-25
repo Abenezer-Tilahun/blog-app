@@ -7,10 +7,6 @@ class Comment < ApplicationRecord
   validates :author_id, presence: true
   validates :post_id, presence: true
 
-  def as_json(*)
-    { author: user.name, comment: text }
-  end
-
   private
 
   def update_comments_counter

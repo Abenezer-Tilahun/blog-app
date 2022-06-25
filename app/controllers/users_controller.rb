@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @recent_posts = @user.recent_3_posts
+    @recent_posts = @user.most_recent_posts
     respond_to do |format|
       format.html
       format.json { render json: @recent_posts }
