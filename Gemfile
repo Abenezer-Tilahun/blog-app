@@ -32,6 +32,7 @@ gem 'jbuilder'
 
 # add devise
 gem 'devise'
+gem 'devise-jwt'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -61,11 +62,13 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.0.0.rc1'
+  gem 'dotenv-rails'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
+  
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem 'rack-mini-profiler'
@@ -82,4 +85,3 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'devise-jwt', '~> 0.9.0'
